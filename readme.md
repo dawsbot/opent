@@ -19,6 +19,10 @@ $ npm install -g opent
 
 ## Usage
 
+For your first use, `opent` will ask for your GitHub username. This is stored in `<module path>/config.json` and can be changed manually if need be. `opent` is intended to be used solely to open your own modules.
+
+<br>
+
 ```
 $ opent
 //=> opens the travis-ci module page for the current directory in browser
