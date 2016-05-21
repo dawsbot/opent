@@ -1,14 +1,15 @@
 #!/usr/bin/env node
 'use strict';
-const meow = require('meow');
-const updateNotifier = require('update-notifier');
-const opent = require('./index.js');
-const opn = require('opn');
 const sh = require('shelljs');
 const chalk = require('chalk');
-const fs = require('fs');
-const path = require('path');
+const updateNotifier = require('update-notifier');
+const meow = require('meow');
+const opn = require('opn');
 const inquirer = require('inquirer');
+
+const Configstore = require('configstore');
+const pkg = require('./package.json');
+const opent = require('./index.js');
 
 const cli = meow([
   'Usage',
@@ -54,19 +55,20 @@ const openPackages = (username) => {
   });
 };
 
-try {
-  fs.statSync(path.join(__dirname, '/config.json'));
-  const username = JSON.parse(fs.readFileSync('config.json', 'utf-8')).username;
-  openPackages(username);
-} catch (err) {
+const conf = new Configstore(pkg.name);
+let username = conf.get('username');
+if (typeof username === 'undefined') {
   inquirer.prompt([
     {
       type: 'input',
       name: 'username',
       message: 'What\'s your GitHub username?'
     }], function (answers) {
-    fs.writeFileSync(path.join(__dirname, '/config.json'), `{"username": "${answers.username}"}`);
-    openPackages(answers.username);
+    conf.set('username', answers.username);
+    username = answers.username;
+    openPackages(username);
   });
+} else {
+  openPackages(username);
 }
 
