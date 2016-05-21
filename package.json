@@ -58,6 +58,7 @@
   "devDependencies": {
     "ava": "^0.14.0",
     "execa": "^0.4.0",
+    "shelljs": "^0.7.0",
     "xo": "^0.15.1"
   },
   "xo": {
