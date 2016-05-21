@@ -19,7 +19,7 @@ $ npm install -g opent
 
 ## Usage
 
-For your first use, `opent` will ask for your GitHub username. This is stored in `<module path>/config.json` and can be changed manually if need be. `opent` is intended to be used solely to open your own modules.
+For your first use, `opent` will ask for your GitHub username. Config is stored in a JSON file located in `$XDG_CONFIG_HOME` or `~/.config`. It can be changed manually if need be. Read more about the [configstore](https://github.com/yeoman/configstore)
 
 <br>
 
@@ -94,6 +94,7 @@ Type: `string`
 <br>
 
 ## Related
+* [openg](https://github.com/dawsonbotsford/openg)
 * [openm](https://github.com/dawsonbotsford/openm)
 
 <br>
